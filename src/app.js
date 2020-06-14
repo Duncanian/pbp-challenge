@@ -2,7 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const CORS = require('cors');
-const modules = require('./modules');
+const routes = require('./routes');
 
 // Set up the express app
 const app = express();
@@ -16,11 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // set base url for api
-modules(app);
-
-// Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => res.status(404).send({
-  message: 'Oops, we lost you!.',
-}));
+routes(app);
 
 module.exports = app;

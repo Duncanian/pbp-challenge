@@ -1,6 +1,6 @@
 const express = require('express');
-const AuthController = require('./Auth');
-const middlewares = require('../../middlewares');
+const AuthController = require('../modules/authentication/Auth');
+const middlewares = require('../middlewares');
 
 const { AuthValidator } = middlewares;
 
@@ -10,6 +10,12 @@ Router.post(
   '/signup',
   AuthValidator.validateSignup,
   AuthController.RegisterUser,
+);
+
+Router.post(
+  '/signin',
+  AuthValidator.validateSignin,
+  AuthController.LoginUser,
 );
 
 module.exports = Router;
